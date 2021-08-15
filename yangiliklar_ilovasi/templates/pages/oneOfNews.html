@@ -1,0 +1,61 @@
+{% extends 'pages/shablon.html' %}
+{% load static %}
+{% block title %}Kategoriya: {% endblock %}
+{% block content %}
+    <div class="container">
+            <div class="col-sm-12">
+              <div class="card" data-aos="fade-up">
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1 class="font-weight-600 mb-4">
+                        {{ turi.category }}
+                      </h1>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
+                      <div class="row">
+                        <div class="col-sm-4 grid-margin">
+                          <div class="rotate-img">
+
+                              <div class="media">
+                                {% if news.rasm %}
+                                  <img src="{{news.rasm.url}}" alt="banner" class="img-fluid" />
+                                {% else %}
+                                  <img
+                                    src="{% static 'assets/images/politics/Politics_2.jpg' %}"
+                                    alt="banner"
+                                    class="img-fluid"
+                                  />
+                                {% endif %}
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-8 grid-margin">
+                          <h2 class="font-weight-600 mb-2">
+                            {{ news.mavzu }}
+                          </h2>
+                          <p class="fs-13 text-muted mb-0">
+                            <span class="mr-2">Photo </span>{{news.vaqt|date:"Y-m-d H:i:s"}}
+                          </p>
+                          <p class="fs-15">
+                            {{ news.tekst }}
+                          </p>
+                        </div>
+                        {% if user.is_authenticated %}
+                          <a href="{% url 'tozalash' news.id %}">o'chirib tashlash</a><br>
+                          <a href="{% url 'almashtirish' news.id %}"> o'zgartirish </a><br>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+
+              </div>
+            </div>
+          </div>
+{% endblock %}

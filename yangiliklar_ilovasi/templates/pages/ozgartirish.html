@@ -1,0 +1,14 @@
+{% extends 'pages/shablon.html' %}
+{% load static %}
+{% block title %}O'zgartirish{% endblock %}
+{% block content %}
+
+<form  method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.media }}
+    {{form.as_p}}
+
+    <input type="submit" value="Update">
+</form>
+
+{% endblock %}

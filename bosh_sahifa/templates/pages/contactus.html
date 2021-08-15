@@ -1,0 +1,17 @@
+{% extends 'pages/shablon.html' %}
+{% load static %}
+{% block title %}ALOQA{% endblock %}
+{% block content %}
+    <h1 class="mt-5 text-center mb-5">
+    Biz Bilan Bog'lanish
+     </h1>
+    <form  method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Murojatingizni Yuboring">
+
+
+    </form>
+{% endblock %}
+
+

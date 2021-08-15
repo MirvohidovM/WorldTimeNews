@@ -1,0 +1,11 @@
+<div class="col-sm-3">
+    <h3 class="font-weight-bold mb-3">KATEGORIYALARI</h3>
+    {% for item in cat %}
+    <div class="footer-border-bottom pb-2 pt-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ item.get_absolute_url }}" class="text-white mb-0 font-weight-600">{{ item.nomi }}</a>
+            <div class="count">{{item.sana}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

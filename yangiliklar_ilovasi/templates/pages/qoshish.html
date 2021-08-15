@@ -1,0 +1,13 @@
+{% extends 'pages/shablon.html' %}
+{% load static %}
+{% block title %}Ma'lumot Qo'shish {% endblock %}
+{% block content %}
+
+<form action="{% url 'qoshish' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary"> yangilikni qo'shish </button>
+</form>
+
+{% endblock %}
