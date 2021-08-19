@@ -32,7 +32,7 @@ class YangilikViews(ListView):
     context_object_name = 'news'
     paginate_by = 3
 
-class Get_name(LoginRequiredMixin, CreateView):
+class YangilikYaratish(LoginRequiredMixin, CreateView):
     template_name = 'pages/qoshish.html'
     form_class = NewsForm
     success_url = '/bosh-sahifa/news/'
@@ -59,10 +59,10 @@ class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
     success_url = '/bosh-sahifa/news/'
     raise_exception = True
 
-class YangilikTozalash(DeleteView):
+class YangilikTozalash(LoginRequiredMixin, DeleteView):
     model = News
     template_name = 'pages/tozalash.html'
     success_url = '/bosh-sahifa/news/'
-
+    raise_exception = True
 
 
