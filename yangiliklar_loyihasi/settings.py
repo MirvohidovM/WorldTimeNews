@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'crispy_forms',
     'djoser',
     'ckeditor',
     'ckeditor_uploader',
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'yangiliklar_ilovasi',
 
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
