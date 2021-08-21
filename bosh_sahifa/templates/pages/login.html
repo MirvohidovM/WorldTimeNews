@@ -33,6 +33,10 @@
 
     <input type="submit" value="Profilga Kirish">
     <input type="hidden" name="next" value="{{ next }}">
+    <br>
+    <br>
+        <p>Parolni Unutdib Qo'ydingizmi ?</p>
+         <a href="{% url 'password_reset' %}" class="nav-link">Unitilgan Parolni Email Orqali Yangilash</a>
     </form>
 
     {# Assumes you setup the password_reset view in your URLconf #}
