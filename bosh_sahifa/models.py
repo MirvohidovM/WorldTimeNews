@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Category(models.Model):
     nomi = models.CharField(max_length=30)
-    parent = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
+    #parent = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
     class Meta:
         verbose_name = 'kategoriya'
         verbose_name_plural = 'kategoriyalar'
@@ -23,7 +23,7 @@ class News(models.Model):
     mavzu = models.CharField('mavzusi', max_length=150)
     tekst = RichTextField('matni')
     vaqt = models.DateTimeField(verbose_name='vaqti', auto_now_add=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     rasm = models.ImageField(upload_to='images', blank=True)
     class Meta:
         verbose_name = 'yangilik'

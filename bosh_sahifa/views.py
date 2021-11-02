@@ -30,15 +30,15 @@ class LoginViews(LoginView):
 
 
 
-class NewsViewSets(viewsets.ModelViewSet):
-    queryset = News.objects.all()
-    serializer_class = NewsSer
-    permission_classes = [permissions.IsAuthenticated]
+# class NewsViewSets(viewsets.ModelViewSet):
+#     queryset = News.objects.all()
+#     serializer_class = NewsSer
+#     permission_classes = [permissions.IsAuthenticated]
 
-class CatViewSets(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CatSer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+# class CatViewSets(viewsets.ModelViewSet):
+#     queryset = Category.objects.all()
+#     serializer_class = CatSer
+#     permission_classes = [permissions.IsAuthenticated]
 
 def log_out(request):
     logout(request)
@@ -77,16 +77,16 @@ def contactus(request):
         form = ContactusForm()
     return render(request, 'pages/contactus.html', {'form': form})
 
-def contactu(request):
-    form = ContactusForm(request.POST)
-    if request.method == 'POST':
-        subject = request.POST.get('subject')
-        content = request.POST.get('content')
-        email = request.POST.get('email')
-        send_mail(subject, content, "mirshoxidmirvoxidov@gmail.com"
-                  , [email], fail_silently=False)
-        return render(request, 'pages/yubor.html', {'email': email})
-    return render(request, 'pages/contactus.html', {'form':form})
+# def contactu(request):
+#     form = ContactusForm(request.POST)
+#     if request.method == 'POST':
+#         subject = request.POST.get('subject')
+#         content = request.POST.get('content')
+#         email = request.POST.get('email')
+#         send_mail(subject, content, "mirshoxidmirvoxidov@gmail.com"
+#                   , [email], fail_silently=False)
+#         return render(request, 'pages/yubor.html', {'email': email})
+#     return render(request, 'pages/contactus.html', {'form':form})
 
 def password_reset_request(request):
     if request.method == "POST":

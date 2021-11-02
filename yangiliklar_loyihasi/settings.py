@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'captcha',
 
     'rest_framework',
-
+    'silk',
     'bosh_sahifa',
     'yangiliklar_ilovasi',
 
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 
 ]
 
@@ -99,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '2183707',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
                               # Set to empty string for default. Not used with sqlite3.
     }
@@ -166,7 +167,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mirshohidmirvohidov@gmail.com"
-EMAIL_HOST_PASSWORD = "mirshohid1992" #'2183707Uyim'
+EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
