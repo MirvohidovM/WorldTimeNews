@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'djoser',
+
     'ckeditor',
     'ckeditor_uploader',
     'captcha',
-
+    'debug_toolbar',
     'rest_framework',
     'silk',
     'bosh_sahifa',
@@ -61,9 +62,15 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'silk.middleware.SilkyMiddleware',
+=======
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+>>>>>>> 5b1d019c1aa18587604e16e041bfa55cb0ff593b
 
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -102,7 +109,9 @@ DATABASES = {
         'USER': 'root',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-                              # Set to empty string for default. Not used with sqlite3.
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        }                     # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -173,6 +182,9 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# CKEDITOR_CONFIGS = {'default': { 'toolbar_Full': [['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],['Link', 'Unlink', 'Anchor'],['Image', 'Flash', 'Table', 'HorizontalRule'],['TextColor', 'BGColor'],['Smiley', 'SpecialChar'], ['Source'],['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['NumberedList','BulletedList'],['Indent','Outdent'],['Maximize'],],'extraPlugins': 'justify,liststyle,indent',},}
+
 
 CKEDITOR_CONFIGS = {
     'default': {

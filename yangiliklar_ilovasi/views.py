@@ -22,8 +22,8 @@ from bosh_sahifa.models import News
     #    return render(request, 'pages/qoshish.html', {'news': news, 'category': category})
 
 # def get_newsID(request, news_id):
-    #    news = News.objects.get(pk=news_id)
-     #   return render(request, 'pages/qoshish.html', {'news': news})
+#        news = News.objects.get(pk=news_id)
+#        return render(request, 'pages/qoshish.html', {'news': news})
 
 
 class YangilikViews(ListView):
@@ -31,6 +31,8 @@ class YangilikViews(ListView):
     model = News
     context_object_name = 'news'
     paginate_by = 3
+    def get_queryset(self):
+        return News.objects.all().select_related('category')
 
 class YangilikYaratish(LoginRequiredMixin, CreateView):
     template_name = 'pages/qoshish.html'
@@ -44,13 +46,16 @@ class YangilikDetali(DetailView):
     model = News
     template_name = 'pages/oneOfNews.html'
     context_object_name = 'news'
+    def get_queryset(self):
+         return News.objects.filter(pk=self.kwargs.get('pk')).select_related('category')
 
-class KategoriyaDetali(ListView):
+
+class KategoriyaBoyicha(ListView):
     template_name = 'pages/yangiliklar.html'
     paginate_by = 3
     context_object_name = 'news'
     def get_queryset(self):
-         return News.objects.filter(category_id=self.kwargs.get('pk'))
+         return News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
 
 class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
     model = News
@@ -58,6 +63,7 @@ class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
     form_class = NewsForm
     success_url = '/bosh-sahifa/news/'
     raise_exception = True
+
 
 class YangilikTozalash(LoginRequiredMixin, DeleteView):
     model = News

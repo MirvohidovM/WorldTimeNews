@@ -1,7 +1,8 @@
 {% load static %}
 {% load new_tags %}
-{% teglar as categories %}
 {% tags as cat %}
+
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -316,5 +317,9 @@
     <script src="{% static 'assets/js/demo.js' %}"></script>
     <script src="{% static 'assets/js/jquery.easeScroll.js' %}"></script>
     <!-- End custom js for this pages-->
+
+    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
   </body>
 </html>

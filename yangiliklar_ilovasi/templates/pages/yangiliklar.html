@@ -1,17 +1,18 @@
 {% extends 'pages/shablon.html' %}
 {% load static %}
-{% block title %}Yangiliklar: {{category.nomi}}{% endblock %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{% block title %}Yangiliklar: {{news.category.nomi}} {% endblock %}
 {% block content %}
   <div class="container">
             <div class="col-sm-12">
               <div class="card" data-aos="fade-up">
                 {% if news %}
-                  {% for turi in news %}
+                  {% for item in news %}
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-12">
                         <h1 class="font-weight-600 mb-4">
-                          {{ turi.category }}
+                          <a href="{{ item.category.get_absolute_url }}" class="text-blue mb-0 font-weight-600">{{ item.category }}</a>
                         </h1>
                       </div>
                     </div>
@@ -22,8 +23,8 @@
                             <div class="rotate-img">
 
                                 <div class="media">
-                                  {% if turi.rasm %}
-                                    <img src="{{turi.rasm.url}}" alt="banner" class="img-fluid" />
+                                  {% if item.rasm %}
+                                    <img src="{{item.rasm.url}}" alt="banner" class="img-fluid" />
                                   {% else %}
                                     <img
                                       src="{% static 'assets/images/politics/Politics_2.jpg' %}"
@@ -36,14 +37,16 @@
                           </div>
                           <div class="col-sm-8 grid-margin">
                             <h2 class="font-weight-600 mb-2">
-                              {{ turi.mavzu }}
+                              {{ item.mavzu }}
                             </h2>
                             <p class="fs-13 text-muted mb-0">
-                              <span class="mr-2">Qo'yilgan Vaqti </span>{{turi.vaqt|date:"Y-m-d H:i:s"}}
+                              <span class="mr-2">Qo'yilgan Vaqti </span>{{item.vaqt|date:"Y-m-d H:i:s"}}
                             </p>
+                            {% autoescape off %}
                             <p class="fs-15">
-                              {{ turi.tekst }}
+                              {{ item.tekst }}
                             </p>
+                            {% endautoescape %}
                           </div>
                         </div>
                       </div>
@@ -51,30 +54,30 @@
                   </div>
                   <hr>
 
-                    <button name="button" type="submit" onclick="location.href='{{ turi.get_absolute_url }}' "> Batafsilroq.. </button>
+                    <button name="button" type="submit" onclick="location.href='{{ item.get_absolute_url }}' "> Batafsilroq.. </button>
                   {% endfor %}
 
                   <nav aria-label="...">
                       <ul class="pagination">
                           {% if page_obj.number != 1 %}
-                          <li class="page-item "><a class="page-link" href="?page=1">1 &laquo; </a>birinchisi</li>
+                          <li class="page-item "><a class="page-link" href="?page=1">1 &laquo; </a>boshi</li>
                           {% endif %}
 
-                          {% if page_obj.has_previous %}
+                          {% if page_obj.has_previous and page_obj.previous_page_number != 1 %}
                           <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>avvalgisi</li>
                           {% endif %}
 
                           <li class="page-item active">
-                          <a class="page-link" href="#">{{ page_obj.number }}
+                          <a class="text-white page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
                               <span class="sr-only">(current)</span></a>{{ page_obj.paginator.num_pages }} betning {{ page_obj.number }}chisi
                           </li>
 
-                          {% if page_obj.has_next %}
+                          {% if page_obj.has_next and page_obj.next_page_number != page_obj.paginator.num_pages %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>keyingisi</li>
                           {% endif %}
 
                           {% if page_obj.number != page_obj.paginator.num_pages %}
-                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a>oxirgisi</li>
+                          <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a>oxiri</li>
                           {% endif %}
                       </ul>
                   </nav>

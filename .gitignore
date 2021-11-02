@@ -1,1 +1,9 @@
-django_cache
+django_cache/
+bosh_sahifa/__pycache__/
+bosh_sahifa/migrations/
+bosh_sahifa/templatetags/__pycache__/
+yangiliklar_ilovasi/__pycache__/
+yangiliklar_ilovasi/migrations/
+yangiliklar_ilovasi/templatetags/__pycache__/
+yangiliklar_loyihasi/_pycache__/
+media/

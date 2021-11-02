@@ -1,6 +1,6 @@
 {% extends 'pages/shablon.html' %}
 {% load static %}
-{% block title %}Kategoriya: {% endblock %}
+{% block title %}Kategoriya: {{ news.mavzu }} {% endblock %}
 {% block content %}
     <div class="container">
             <div class="col-sm-12">
@@ -10,7 +10,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <h1 class="font-weight-600 mb-4">
-                        {{ turi.category }}
+                        <a href="{{ news.category.get_absolute_url }}" class="text-blue mb-0 font-weight-600">{{ news.category }}</a>
                       </h1>
                     </div>
                   </div>
@@ -40,13 +40,15 @@
                           <p class="fs-13 text-muted mb-0">
                             <span class="mr-2">Photo </span>{{news.vaqt|date:"Y-m-d H:i:s"}}
                           </p>
+                          {% autoescape off %}
                           <p class="fs-15">
                             {{ news.tekst }}
                           </p>
+                          {% endautoescape %}
                         </div>
                         {% if user.is_authenticated %}
-                          <a href="{% url 'tozalash' news.id %}">o'chirib tashlash</a><br>
-                          <a href="{% url 'almashtirish' news.id %}"> o'zgartirish </a><br>
+                          <a href="{% url 'tozalash' news.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
+                          <a href="{% url 'almashtirish' news.id %}" class="btn btn-warning"> o'zgartirish </a><br>
                         {% endif %}
                       </div>
                     </div>
