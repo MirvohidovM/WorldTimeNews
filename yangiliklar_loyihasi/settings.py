@@ -62,11 +62,10 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-<<<<<<< HEAD
-    'silk.middleware.SilkyMiddleware',
-=======
     'debug_toolbar.middleware.DebugToolbarMiddleware',
->>>>>>> 5b1d019c1aa18587604e16e041bfa55cb0ff593b
+    'silk.middleware.SilkyMiddleware',
+
+
 
 ]
 

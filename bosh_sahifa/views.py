@@ -30,15 +30,15 @@ class LoginViews(LoginView):
 
 
 
-# class NewsViewSets(viewsets.ModelViewSet):
-#     queryset = News.objects.all()
-#     serializer_class = NewsSer
-#     permission_classes = [permissions.IsAuthenticated]
+class NewsViewSets(viewsets.ModelViewSet):
+    queryset = News.objects.all()
+    serializer_class = NewsSer
+    permission_classes = [permissions.IsAuthenticated]
 
-# class CatViewSets(viewsets.ModelViewSet):
-#     queryset = Category.objects.all()
-#     serializer_class = CatSer
-#     permission_classes = [permissions.IsAuthenticated]
+class CatViewSets(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CatSer
+    permission_classes = [permissions.IsAuthenticated]
 
 def log_out(request):
     logout(request)
