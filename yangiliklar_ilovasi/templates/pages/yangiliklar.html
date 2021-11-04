@@ -1,6 +1,6 @@
 {% extends 'pages/shablon.html' %}
 {% load static %}
-<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+<!--<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>-->
 {% block title %}Yangiliklar: {{news.category.nomi}} {% endblock %}
 {% block content %}
   <div class="container">
@@ -27,7 +27,7 @@
                                     <img src="{{item.rasm.url}}" alt="banner" class="img-fluid" />
                                   {% else %}
                                     <img
-                                      src="{% static 'assets/images/politics/Politics_2.jpg' %}"
+                                      src="{% static 'assets/images/politics/Politics_3.jpg' %}"
                                       alt="banner"
                                       class="img-fluid"
                                     />
@@ -54,7 +54,7 @@
                   </div>
                   <hr>
 
-                    <button name="button" type="submit" onclick="location.href='{{ item.get_absolute_url }}' "> Batafsilroq.. </button>
+                    <button type="submit" onclick="location.href='{{ item.get_absolute_url }}' "> Batafsilroq.. </button>
                   {% endfor %}
 
                   <nav aria-label="...">

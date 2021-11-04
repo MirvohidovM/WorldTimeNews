@@ -21,6 +21,11 @@ def uy(request):
     news = News.objects.all()
     return render(request, 'pages/index.html', {'news': news})
 
+def inner(request):
+    return render (request, 'pages/index-inner.html', {})
+
+
+
 def aboutus(request):
     return render(request, 'pages/aboutus.html')
 

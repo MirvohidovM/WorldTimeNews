@@ -5,8 +5,5 @@ bosh_sahifa/templatetags/__pycache__/
 yangiliklar_ilovasi/__pycache__/
 yangiliklar_ilovasi/migrations/
 yangiliklar_ilovasi/templatetags/__pycache__/
-yangiliklar_loyihasi/_pycache__/
+yangiliklar_loyihasi/__pycache__/
 media/
-.idea/
-mysqlclient-1.4.6-cp39-cp39-win_amd64.whl/
-venv/
