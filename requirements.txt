@@ -1,6 +1,7 @@
 appdirs==1.4.4
 asgiref==3.4.0
 autopep8==1.5.7
+bleach==4.1.0
 certifi==2021.5.30
 cffi==1.14.6
 charset-normalizer==2.0.3
@@ -18,6 +19,7 @@ django-ranged-response==0.2.0
 django-silk==4.1.0
 django-simple-captcha==0.5.14
 django-smtp-ssl==1.0
+django-summernote==0.8.20.0
 django-templated-mail==1.1.1
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.7.2
@@ -30,11 +32,13 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 mysqlclient @ file:///C:/Users/User/PycharmProjects/world_time_news/mysqlclient-1.4.6-cp39-cp39-win_amd64.whl
 oauthlib==3.1.1
+packaging==21.2
 Pillow==8.2.0
 pycodestyle==2.7.0
 pycparser==2.20
 Pygments==2.10.0
 PyJWT==2.1.0
+pyparsing==2.4.7
 python-dateutil==2.8.2
 python3-openid==3.2.0
 pytz==2021.1
@@ -48,3 +52,4 @@ toml==0.10.2
 uritemplate==3.0.1
 urllib3==1.26.6
 virtualenv==20.4.7
+webencodings==0.5.1
