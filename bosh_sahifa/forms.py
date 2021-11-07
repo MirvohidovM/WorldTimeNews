@@ -2,7 +2,7 @@ from captcha.fields import CaptchaField
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.forms.models import ModelForm
 from django.forms.widgets import TextInput, Textarea, FileInput
-from .models import News, Category
+from .models import News, Category, Comment
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -53,3 +53,10 @@ class Loginform(forms.Form):
         model = User
         fields = ('username', 'password2')
 
+
+# kommentariya qismi
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("name", "email", "body")

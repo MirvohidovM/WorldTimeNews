@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail, BadHeaderError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import viewsets, permissions
-from bosh_sahifa.forms import SignUpForm,  ContactusForm
-from bosh_sahifa.models import News, Category
+from bosh_sahifa.forms import SignUpForm,  ContactusForm, CommentForm
+from bosh_sahifa.models import News, Category, Post
 from bosh_sahifa.serializers import CatSer, NewsSer
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -16,6 +16,10 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+
+from django.views import generic
+
+
 
 def uy(request):
     news = News.objects.all()
@@ -124,6 +128,47 @@ def password_reset_request(request):
     return render(request=request, template_name="main/password/password_reset.html", context={"password_reset_form":password_reset_form})
 
 
+# kommentariya qismi
+class PostList(generic.ListView):
+    queryset = Post.objects.filter(status=1).order_by("-created_on")
+    template_name = "pages/post.html"
+    paginate_by = 3
+
+
+# class PostDetail(generic.DetailView):
+#     model = Post
+#     template_name = 'post_detail.html'
+
+
+def post_detail(request, slug):
+    template_name = "pages/post_detail.html"
+    post = get_object_or_404(Post, slug=slug)
+    comments = post.comments.filter(active=True).order_by("-created_on")
+    new_comment = None
+    # Comment posted
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(
+        request,
+        template_name,
+        {
+            "post": post,
+            "comments": comments,
+            "new_comment": new_comment,
+            "comment_form": comment_form,
+        },
+    )
 
 
 

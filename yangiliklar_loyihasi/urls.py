@@ -33,7 +33,9 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('silk', include('silk.urls', namespace='silk')),
     path('__debug__/', include(debug_toolbar.urls)),
-
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('summernote/', include('django_summernote.urls')),
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
