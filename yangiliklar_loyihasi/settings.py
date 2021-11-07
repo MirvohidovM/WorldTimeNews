@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'djoser',
+    "django_summernote",
 
     'ckeditor',
     'ckeditor_uploader',
@@ -68,7 +69,7 @@ MIDDLEWARE = [
 
 
 ]
-
+# DebugToolbar
 INTERNAL_IPS = ['127.0.0.1']
 
 REST_FRAMEWORK = {
@@ -106,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '2183707',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'OPTIONS': {
             'charset': 'utf8mb4',
@@ -161,6 +162,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT =MEDIA_DIR
@@ -175,12 +177,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mirshohidmirvohidov@gmail.com"
-EMAIL_HOST_PASSWORD = "2183707uy"
+EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 # CKEDITOR_CONFIGS = {'default': { 'toolbar_Full': [['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],['Link', 'Unlink', 'Anchor'],['Image', 'Flash', 'Table', 'HorizontalRule'],['TextColor', 'BGColor'],['Smiley', 'SpecialChar'], ['Source'],['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['NumberedList','BulletedList'],['Indent','Outdent'],['Maximize'],],'extraPlugins': 'justify,liststyle,indent',},}
 
@@ -257,3 +260,4 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
     }
 }
+
