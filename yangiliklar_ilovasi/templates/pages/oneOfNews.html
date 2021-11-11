@@ -5,7 +5,6 @@
     <div class="container">
             <div class="col-sm-12">
               <div class="card" data-aos="fade-up">
-
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-12">
@@ -16,47 +15,179 @@
                   </div>
                   <div class="row">
                     <div class="col-lg-8">
-                      <div class="row">
-                        <div class="col-sm-4 grid-margin">
+                        <h2 class="font-weight-600 mb-2">
+                          {{ news.mavzu }}
+                        </h2>
+                        <p class="fs-13 text-muted mb-0">
+                          <span class="mr-2">Photo </span>{{news.vaqt|date:"Y-m-d H:i:s"}}
+                        </p>
                           <div class="rotate-img">
 
                               <div class="media">
                                 {% if news.rasm %}
-                                  <img src="{{news.rasm.url}}" alt="banner" class="img-fluid" />
+                                  <img src="{{news.rasm.url}}" alt="banner" class="img-fluid mt-4 mb-4" />
                                 {% else %}
                                   <img
                                     src="{% static 'assets/images/politics/Politics_2.jpg' %}"
                                     alt="banner"
-                                    class="img-fluid"
+                                    class="img-fluid mt-4 mb-4"
                                   />
                                 {% endif %}
+
                               </div>
                           </div>
-                        </div>
-                        <div class="col-sm-8 grid-margin">
-                          <h2 class="font-weight-600 mb-2">
-                            {{ news.mavzu }}
-                          </h2>
-                          <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">Photo </span>{{news.vaqt|date:"Y-m-d H:i:s"}}
-                          </p>
-                          {% autoescape off %}
-                          <p class="fs-15">
-                            {{ news.tekst }}
-                          </p>
-                          {% endautoescape %}
-                        </div>
-                        {% if user.is_authenticated %}
+
+                        <div class="col-sm-12 grid-margin">
+                                {% autoescape off %}
+                                  <p class="fs-15">
+                                    {{ news.tekst }}
+                                  </p>
+                                {% endautoescape %}
+
+                                {% block post_detail %}
+                                {% include 'pages/post_detail.html' %}
+                                {% endblock post_detail %}
+                         </div>
+                        {% if user.is_staff %}
                           <a href="{% url 'tozalash' news.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
                           <a href="{% url 'almashtirish' news.id %}" class="btn btn-warning"> o'zgartirish </a><br>
                         {% endif %}
-                      </div>
+
+
                     </div>
+                    <div class="col-lg-4">
+                          <h2 class="mb-4 text-primary font-weight-600">
+                            Latest news
+                          </h2>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="border-bottom pb-4 pt-4">
+                                <div class="row">
+                                  <div class="col-sm-8">
+                                    <h5 class="font-weight-600 mb-1">
+                                      Ways to stay social online while in self..
+                                    </h5>
+                                    <p class="fs-13 text-muted mb-0">
+                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                    </p>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="rotate-img">
+                                      <img
+                                        src="{% static 'assets/images/inner/inner_7.jpg' %}"
+                                        alt="banner"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="border-bottom pb-4 pt-4">
+                                <div class="row">
+                                  <div class="col-sm-8">
+                                    <h5 class="font-weight-600 mb-1">
+                                      Premier League players join charity..
+                                    </h5>
+                                    <p class="fs-13 text-muted mb-0">
+                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                    </p>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="rotate-img">
+                                      <img
+                                        src="{% static 'assets/images/inner/inner_8.jpg' %}"
+                                        alt="banner"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="pt-4">
+                                <div class="row">
+                                  <div class="col-sm-8">
+                                    <h5 class="font-weight-600 mb-1">
+                                      UK Athletics board changed stance on..
+                                    </h5>
+                                    <p class="fs-13 text-muted mb-0">
+                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                    </p>
+                                  </div>
+                                  <div class="col-sm-4">
+                                    <div class="rotate-img">
+                                      <img
+                                        src="{% static 'assets/images/inner/inner_9.jpg' %}"
+                                        alt="banner"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="trending">
+                            <h2 class="mb-4 text-primary font-weight-600">
+                              Trending
+                            </h2>
+                            <div class="mb-4">
+                              <div class="rotate-img">
+                                <img
+                                  src="{% static 'assets/images/inner/inner_10.jpg' %}"
+                                  alt="banner"
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <h3 class="mt-3 font-weight-600">
+                                Virus Kills Member Of Advising Iran’s Supreme
+                              </h3>
+                              <p class="fs-13 text-muted mb-0">
+                                <span class="mr-2">Photo </span>10 Minutes ago
+                              </p>
+                            </div>
+                            <div class="mb-4">
+                              <div class="rotate-img">
+                                <img
+                                  src="{% static 'assets/images/inner/inner_11.jpg' %}"
+                                  alt="banner"
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <h3 class="mt-3 font-weight-600">
+                                Virus Kills Member Of Advising Iran’s Supreme
+                              </h3>
+                              <p class="fs-13 text-muted mb-0">
+                                <span class="mr-2">Photo </span>10 Minutes ago
+                              </p>
+                            </div>
+                            <div class="mb-4">
+                              <div class="rotate-img">
+                                <img
+                                  src="{% static 'assets/images/inner/inner_12.jpg' %}"
+                                  alt="banner"
+                                  class="img-fluid"
+                                />
+                              </div>
+                              <h3 class="mt-3 font-weight-600">
+                                Virus Kills Member Of Advising Iran’s Supreme
+                              </h3>
+                              <p class="fs-13 text-muted mb-0">
+                                <span class="mr-2">Photo </span>10 Minutes ago
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                   </div>
                 </div>
                 <hr>
-
-
               </div>
             </div>
           </div>

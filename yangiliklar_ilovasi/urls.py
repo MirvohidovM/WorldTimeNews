@@ -9,11 +9,9 @@ urlpatterns = [
     #path('category/<int:pk>/', get_category, name='kategoriya'),
 
     path('',  cache_page(60)(YangilikViews.as_view()), name='yangiliklar'),
-
-    path('<int:pk>/', YangilikDetali.as_view(), name='oneOfNews'),
     path('category/<int:pk>/', KategoriyaBoyicha.as_view(), name='kategoriya'),
     path('qoshish/', YangilikYaratish.as_view(), name='qoshish'),
     path('<int:pk>/almashtirish/', YangilikAlmashtirish.as_view(), name='almashtirish'),
     path('<int:pk>/tozalash/', YangilikTozalash.as_view(), name='tozalash'),
-
+    path('<slug:slug>/', yangilikDetali, name='oneOfNews'),
     ]

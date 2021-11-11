@@ -20,5 +20,5 @@ urlpatterns= [
 
     path("post/", views.PostList.as_view(), name="post"),
     # path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
-    path("<slug:slug>/", views.post_detail, name="post_detail"),
+    # path("<slug:slug>/", views.post_detail, name="post_detail"),
 ]

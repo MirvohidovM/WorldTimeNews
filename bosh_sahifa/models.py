@@ -23,10 +23,16 @@ class Category(models.Model):
 
 class News(models.Model):
     mavzu = models.CharField('mavzusi', max_length=150)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="blog_posts", default=True
+    )
     tekst = RichTextField('matni')
     vaqt = models.DateTimeField(verbose_name='vaqti', auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    rasm = models.ImageField(upload_to='images', blank=True)
+    rasm = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+
     class Meta:
         verbose_name = 'yangilik'
         verbose_name_plural = 'yangiliklar'
@@ -36,36 +42,16 @@ class News(models.Model):
          return self.mavzu
 
     def get_absolute_url(self):
-        return reverse('oneOfNews', kwargs={'pk':self.pk})
+        return reverse('oneOfNews', kwargs={"slug": str(self.slug)})
 
    # def get_absolute_url(self):
     #    return f'/news/{self.id}'
 
+
 # commentlar qismi
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_posts"
-        )
-    updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-
-    class Meta:
-        ordering = ["-created_on"]
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        from django.urls import reverse
-
-        return reverse("post_detail", kwargs={"slug": str(self.slug)})
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    post = models.ForeignKey(News, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
