@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import CreateView, DeleteView, UpdateView,ListView,
+from django.views.generic import CreateView, DeleteView, UpdateView,ListView
 from bosh_sahifa.forms import NewsForm, CommentForm
 from bosh_sahifa.models import News
 
