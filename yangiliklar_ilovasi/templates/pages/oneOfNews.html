@@ -45,29 +45,28 @@
                                 {% endautoescape %}
                                 <hr>
                                 <hr>
+                                {% if user.is_staff %}
+                                  <a href="{% url 'tozalash' news.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
+                                  <a href="{% url 'almashtirish' news.id %}" class="btn btn-warning"> o'zgartirish </a><br>
+                                {% endif %}
+                                <hr>
+                                <hr>
                                 <div class="d-lg-flex">
                             <span class="fs-16 font-weight-600 mr-2 mb-1"
-                              >Tags</span
+                              >Aloqador Mavzular</span
                             >
-                            <span class="badge badge-outline-dark mr-2 mb-1"
-                              >Trending</span
-                            >
-                            <span class="badge badge-outline-dark mr-2 mb-1"
-                              >Trending</span
-                            ><span class="badge badge-outline-dark mr-2 mb-1"
-                              >Trending</span
-                            ><span class="badge badge-outline-dark mr-2 mb-1"
-                              >Trending</span
-                            ><span class="badge badge-outline-dark mb-1"
-                              >Trending</span
-                            >
+
+
+                                {% for tag in news.tag.all %}
+
+                                    <span class="badge badge-outline-dark mr-2 mb-1"
+                                        >{{tag.nomi}}</span>
+
+                                {% endfor %}
+
+
                           </div>
                         </div>
-
-                        {% if user.is_staff %}
-                          <a href="{% url 'tozalash' news.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
-                          <a href="{% url 'almashtirish' news.id %}" class="btn btn-warning"> o'zgartirish </a><br>
-                        {% endif %}
 
                         <div class="col-sm-12 grid-margin">
 

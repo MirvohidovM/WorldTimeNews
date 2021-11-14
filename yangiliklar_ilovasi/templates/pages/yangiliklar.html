@@ -44,7 +44,7 @@
                             </p>
                             {% autoescape off %}
                             <p class="fs-15">
-                              {{ item.tekst }}
+                              {{ item.tekst|truncatewords:25}}
                             </p>
                             {% endautoescape %}
                           </div>
@@ -83,7 +83,7 @@
                   </nav>
 
                 {% else %}
-                <h1> bu kategoriyaga tegishli yangiliklar mavjud emas !</h1>
+                <h1>  yangiliklar mavjud emas !</h1>
                 {% endif %}
               </div>
             </div>

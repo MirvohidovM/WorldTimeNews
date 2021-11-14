@@ -1,7 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.contrib import admin
-from bosh_sahifa.models import News, Category, Comment
+from bosh_sahifa.models import News, Category, Comment, Tag
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -37,3 +37,4 @@ class CommentAdmin(admin.ModelAdmin):
 # admin.site.register(Post, PostAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category)
+admin.site.register(Tag)

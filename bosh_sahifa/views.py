@@ -22,8 +22,7 @@ from django.views import generic
 
 
 def uy(request):
-    news = News.objects.all()
-    return render(request, 'pages/index.html', {'news': news})
+    return render(request, 'pages/index.html', {})
 
 def inner(request):
     return render (request, 'pages/index-inner.html', {})

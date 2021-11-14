@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import CreateView, DeleteView, UpdateView,ListView
 from bosh_sahifa.forms import NewsForm, CommentForm
-from bosh_sahifa.models import News
+from bosh_sahifa.models import News, Tag
 
 
 class YangilikViews(ListView):
@@ -16,6 +16,8 @@ class YangilikViews(ListView):
 def yangilikDetali(request, slug):
     template_name = "pages/oneOfNews.html"
     news = get_object_or_404(News, slug=slug)
+    # tag = Tag.objects.filter(slug=slug)
+    # newstags = tag.taggs.all()
     comments = news.comments.filter(active=True).order_by("-created_on")
     new_comment = None
     # Comment posted
@@ -37,6 +39,7 @@ def yangilikDetali(request, slug):
         template_name,
         {
             "news": news,
+            # "newstags": newstags,
             "comments": comments,
             "new_comment": new_comment,
             "comment_form": comment_form,

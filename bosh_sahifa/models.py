@@ -19,7 +19,25 @@ class Category(models.Model):
        # return f'/category/{self.id}'
 
     def __str__(self):
-        return self.nomi
+        return "{}".format(self.nomi)
+
+class Tag(models.Model):
+    nomi = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=200, unique=True)
+
+    class Meta:
+        verbose_name = 'teg'
+        verbose_name_plural = 'teglar'
+
+    def get_absolute_url(self):
+        return reverse('oneOfNews', kwargs={"slug": str(self.slug)})
+
+    #def get_absolute_url(self):
+       # return f'/category/{self.id}'
+
+    def __str__(self):
+        return "{}".format(self.nomi)
+
 
 class News(models.Model):
     mavzu = models.CharField('mavzusi', max_length=150)
@@ -29,7 +47,8 @@ class News(models.Model):
     )
     tekst = RichTextField('matni')
     vaqt = models.DateTimeField(verbose_name='vaqti', auto_now_add=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, related_name='categories')
+    tag = models.ManyToManyField(Tag,  blank=True, related_name='taggs')
     rasm = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
@@ -39,7 +58,7 @@ class News(models.Model):
         ordering = ['-vaqt']
 
     def __str__(self):
-         return self.mavzu
+         return "{}".format(self.mavzu)
 
     def get_absolute_url(self):
         return reverse('oneOfNews', kwargs={"slug": str(self.slug)})
