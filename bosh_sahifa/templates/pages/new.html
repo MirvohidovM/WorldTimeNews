@@ -1,50 +1,60 @@
-{% extends 'pages/shablon.html' %}
-{% load static %}
-{% block title %}Yangiliklar: {{news.category.nomi}} {% endblock %}
-{% block content %}
-
-   <div class="content-wrapper">
-              <div class="container">
-                <div class="col-sm-12">
-                  <div class="card" data-aos="fade-up">
-                    <div class="card-body">
-                      <div class="row">
-
-                        {% if news %}
-                        <div class="col-lg-8">
-                          {% for item in news %}
-                          <div>
-                            <h1 class="font-weight-600 mb-1">
-                              {{ item.mavzu }}
-                            </h1>
-                            <p class="fs-13 text-muted mb-0">
-                              <span class="mr-2">Photo </span>{{item.vaqt|date:"Y-m-d H:i:s"}}
-                            </p>
+<div class="container">
+            <div class="col-sm-12">
+              <div class="card" data-aos="fade-up">
+                {% if news %}
+                  {% for item in news %}
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h1 class="font-weight-600 mb-4">
+                          <a href="{{ item.category.get_absolute_url }}" class="text-blue mb-0 font-weight-600">{{ item.category }}</a>
+                        </h1>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <div class="col-sm-4 grid-margin">
                             <div class="rotate-img">
+
+                                <div class="media">
                                   {% if item.rasm %}
                                     <img src="{{item.rasm.url}}" alt="banner" class="img-fluid" />
                                   {% else %}
                                     <img
                                       src="{% static 'assets/images/politics/Politics_3.jpg' %}"
                                       alt="banner"
-                                      class="img-fluid mt-4 mb-4"
+                                      class="img-fluid"
                                     />
                                   {% endif %}
+                                </div>
                             </div>
-
+                          </div>
+                          <div class="col-sm-8 grid-margin">
+                            <h2 class="font-weight-600 mb-2">
+                              {{ item.mavzu }}
+                            </h2>
+                            <p class="fs-13 text-muted mb-0">
+                              <span class="mr-2">Qo'yilgan Vaqti </span>{{item.vaqt|date:"Y-m-d H:i:s"}}
+                            </p>
                             {% autoescape off %}
-                            <p class="mb-4 fs-15">
-                                {{ item.tekst|truncatewords:25}}
+                            <p class="fs-15">
+                              {{ item.tekst|truncatewords:25}}
                             </p>
                             {% endautoescape %}
-                            <button type="submit" onclick="location.href='{{ item.get_absolute_url }}' "> Batafsilroq >>> </button>
                           </div>
-                          {% endfor %}
                         </div>
-                       {% else %}
-                          <h1>  yangiliklar mavjud emas !</h1>
-                       {% endif %}
+                      </div>
 
+                    </div>
+                  </div>
+                  <hr>
+
+                    <button type="submit" onclick="location.href='{{ item.get_absolute_url }}' "> Batafsilroq >>> </button>
+                  {% endfor %}
+
+                    <div class="card-body">
+                       <div class="row">
                         <div class="col-lg-4">
                           <h2 class="mb-4 text-primary font-weight-600">
                             So'nggi Yangiliklar
@@ -130,8 +140,10 @@
                             </div>
                           </div>
                         </div>
+                       </div>
+                    </div>
 
-                        <nav aria-label="...">
+                  <nav aria-label="...">
                       <ul class="pagination">
                           {% if page_obj.number != 1 %}
                           <li class="page-item "><a class="page-link" href="?page=1">1 &laquo; </a>boshi</li>
@@ -156,12 +168,9 @@
                       </ul>
                   </nav>
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {% else %}
+                <h1>  yangiliklar mavjud emas !</h1>
+                {% endif %}
               </div>
             </div>
-
-{% endblock %}
-
+          </div>

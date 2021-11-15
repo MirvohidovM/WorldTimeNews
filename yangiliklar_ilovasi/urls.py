@@ -14,4 +14,5 @@ urlpatterns = [
     path('<int:pk>/almashtirish/', YangilikAlmashtirish.as_view(), name='almashtirish'),
     path('<int:pk>/tozalash/', YangilikTozalash.as_view(), name='tozalash'),
     path('<slug:slug>/', yangilikDetali, name='oneOfNews'),
+    path('tag/<slug:slug>/', tagView, name='tag'),
     ]

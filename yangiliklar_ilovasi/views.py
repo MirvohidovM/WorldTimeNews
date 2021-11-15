@@ -16,8 +16,8 @@ class YangilikViews(ListView):
 def yangilikDetali(request, slug):
     template_name = "pages/oneOfNews.html"
     news = get_object_or_404(News, slug=slug)
-    # tag = Tag.objects.filter(slug=slug)
-    # newstags = tag.taggs.all()
+
+    latest_news = News.objects.order_by("-vaqt")[0:3]
     comments = news.comments.filter(active=True).order_by("-created_on")
     new_comment = None
     # Comment posted
@@ -39,19 +39,23 @@ def yangilikDetali(request, slug):
         template_name,
         {
             "news": news,
-            # "newstags": newstags,
+            "latest_news": latest_news,
             "comments": comments,
             "new_comment": new_comment,
             "comment_form": comment_form,
         },
     )
 
+def tagView(request, slug):
+    return render(request, 'pages/tag.html',  {"slug":slug})
+
 class KategoriyaBoyicha(ListView):
     template_name = 'pages/yangiliklar.html'
     paginate_by = 3
     context_object_name = 'news'
     def get_queryset(self):
-         return News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
+        # latest_news = News.objects.order_by("-vaqt")[0:3]
+        return News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
 
 class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
     model = News

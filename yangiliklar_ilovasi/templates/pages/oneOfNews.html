@@ -58,9 +58,11 @@
 
 
                                 {% for tag in news.tag.all %}
-
-                                    <span class="badge badge-outline-dark mr-2 mb-1"
+                                   <a href="{% url 'tag' tag.slug %}" >
+                                       <span class="badge badge-outline-dark mr-2 mb-1"
                                         >{{tag.nomi}}</span>
+                                   </a>
+
 
                                 {% endfor %}
 
@@ -80,24 +82,27 @@
                     </div>
                     <div class="col-lg-4">
                           <h2 class="mb-4 text-primary font-weight-600">
-                            Latest news
+                            So'nggi Yangiliklar
                           </h2>
-                          <div class="row">
+                          {% for latest in latest_news %}
+                            <div class="row">
                             <div class="col-sm-12">
                               <div class="border-bottom pb-4 pt-4">
                                 <div class="row">
                                   <div class="col-sm-8">
+                                    {% autoescape off %}
                                     <h5 class="font-weight-600 mb-1">
-                                      Ways to stay social online while in self..
+                                        {{latest.tekst|truncatewords:10}}
                                     </h5>
+                                    {% endautoescape %}
                                     <p class="fs-13 text-muted mb-0">
-                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                      <span class="mr-2">Photo </span>{{latest.vaqt}}
                                     </p>
                                   </div>
                                   <div class="col-sm-4">
                                     <div class="rotate-img">
                                       <img
-                                        src="{% static 'assets/images/inner/inner_7.jpg' %}"
+                                        src={{latest.rasm.url}}
                                         alt="banner"
                                         class="img-fluid"
                                       />
@@ -107,56 +112,8 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div class="border-bottom pb-4 pt-4">
-                                <div class="row">
-                                  <div class="col-sm-8">
-                                    <h5 class="font-weight-600 mb-1">
-                                      Premier League players join charity..
-                                    </h5>
-                                    <p class="fs-13 text-muted mb-0">
-                                      <span class="mr-2">Photo </span>10 Minutes ago
-                                    </p>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="rotate-img">
-                                      <img
-                                        src="{% static 'assets/images/inner/inner_8.jpg' %}"
-                                        alt="banner"
-                                        class="img-fluid"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <div class="pt-4">
-                                <div class="row">
-                                  <div class="col-sm-8">
-                                    <h5 class="font-weight-600 mb-1">
-                                      UK Athletics board changed stance on..
-                                    </h5>
-                                    <p class="fs-13 text-muted mb-0">
-                                      <span class="mr-2">Photo </span>10 Minutes ago
-                                    </p>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="rotate-img">
-                                      <img
-                                        src="{% static 'assets/images/inner/inner_9.jpg' %}"
-                                        alt="banner"
-                                        class="img-fluid"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          {% endfor %}
+
                           <div class="trending">
                             <h2 class="mb-4 text-primary font-weight-600">
                               Trending
