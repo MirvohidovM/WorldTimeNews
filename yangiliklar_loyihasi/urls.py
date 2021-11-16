@@ -28,6 +28,7 @@ from .api import router
 urlpatterns = [
     url('admin/', admin.site.urls),
     url('bosh-sahifa/', include('bosh_sahifa.urls')),
+    path('rest_api/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/', include(router.urls)),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('captcha/', include('captcha.urls')),
