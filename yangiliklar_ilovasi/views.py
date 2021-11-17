@@ -13,6 +13,10 @@ class YangilikViews(ListView):
     def get_queryset(self):
         return News.objects.select_related('category').all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_news'] = News.objects.order_by("-vaqt")[0:3]
+        return context
 
 def yangilikDetali(request, slug):
     template_name = "pages/oneOfNews.html"
@@ -55,11 +59,13 @@ def tagView(request, slug):
 class KategoriyaBoyicha(ListView):
     template_name = 'pages/yangiliklar.html'
     paginate_by = 3
-    context_object_name = 'news'
+    model = News
 
-    def get_queryset(self):
-        # latest_news = News.objects.order_by("-vaqt")[0:3]
-        return News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['news'] = News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
+        context['latest_news'] = News.objects.order_by("-vaqt")[0:3]
+        return context
 
 
 class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
