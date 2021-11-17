@@ -1,6 +1,6 @@
 {% extends 'pages/shablon.html' %}
 {% load static %}
-{% block title %}Kategoriya: {{ news.mavzu }} {% endblock %}
+{% block title %}Kategoriya: {{ newss.mavzu }} {% endblock %}
 {% block content %}
     <div class="container">
             <div class="col-sm-12">
@@ -9,23 +9,23 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <h1 class="font-weight-600 mb-4">
-                        <a href="{{ news.category.get_absolute_url }}" class="text-blue mb-0 font-weight-600">{{ news.category }}</a>
+                        <a href="{{ newss.category.get_absolute_url }}" class="text-blue mb-0 font-weight-600">{{ newss.category }}</a>
                       </h1>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-8">
                         <h2 class="font-weight-600 mb-2">
-                          {{ news.mavzu }}
+                          {{ newss.mavzu }}
                         </h2>
                         <p class="fs-13 text-muted mb-0">
-                          <span class="mr-2">Photo </span>{{news.vaqt|date:"Y-m-d H:i:s"}}
+                          <span class="mr-2">Photo </span>{{newss.vaqt|date:"Y-m-d H:i:s"}}
                         </p>
                           <div class="rotate-img">
 
                               <div class="media">
-                                {% if news.rasm %}
-                                  <img src="{{news.rasm.url}}" alt="banner" class="img-fluid mt-4 mb-4" />
+                                {% if newss.rasm %}
+                                  <img src="{{newss.rasm.url}}" alt="banner" class="img-fluid mt-4 mb-4" />
                                 {% else %}
                                   <img
                                     src="{% static 'assets/images/politics/Politics_2.jpg' %}"
@@ -40,14 +40,14 @@
                         <div class="col-sm-12 grid-margin">
                                 {% autoescape off %}
                                   <p class="fs-15">
-                                    {{ news.tekst }}
+                                    {{ newss.tekst }}
                                   </p>
                                 {% endautoescape %}
                                 <hr>
                                 <hr>
                                 {% if user.is_staff %}
-                                  <a href="{% url 'tozalash' news.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
-                                  <a href="{% url 'almashtirish' news.id %}" class="btn btn-warning"> o'zgartirish </a><br>
+                                  <a href="{% url 'tozalash' newss.id %}" class="btn btn-danger">o'chirib tashlash</a><br>
+                                  <a href="{% url 'almashtirish' newss.id %}" class="btn btn-warning"> o'zgartirish </a><br>
                                 {% endif %}
                                 <hr>
                                 <hr>
@@ -57,7 +57,7 @@
                             >
 
 
-                                {% for tag in news.tag.all %}
+                                {% for tag in newss.tag.all %}
                                    <a href="{% url 'tag' tag.slug %}" >
                                        <span class="badge badge-outline-dark mr-2 mb-1"
                                         >{{tag.nomi}}</span>

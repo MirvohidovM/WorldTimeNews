@@ -107,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'PASSWORD': '2183707',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'OPTIONS': {
             'charset': 'utf8mb4',
@@ -176,8 +176,8 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "mirvohidov@gmail.com"
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = "mirshohidmirvohidov@gmail.com"
+EMAIL_HOST_PASSWORD = "2183707uy"
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True

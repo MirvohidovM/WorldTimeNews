@@ -7,11 +7,12 @@ from bosh_sahifa.models import News, Tag
 
 class YangilikViews(ListView):
     template_name = 'pages/yangiliklar.html'
-    model = News
     context_object_name = 'news'
     paginate_by = 3
+
     def get_queryset(self):
-        return News.objects.all().select_related('category')
+        return News.objects.select_related('category').all()
+
 
 def yangilikDetali(request, slug):
     template_name = "pages/oneOfNews.html"
@@ -38,7 +39,7 @@ def yangilikDetali(request, slug):
         request,
         template_name,
         {
-            "news": news,
+            "newss": news,
             "latest_news": latest_news,
             "comments": comments,
             "new_comment": new_comment,
@@ -46,16 +47,20 @@ def yangilikDetali(request, slug):
         },
     )
 
+
 def tagView(request, slug):
-    return render(request, 'pages/tag.html',  {"slug":slug})
+    return render(request, 'pages/tag.html',  {"slug": slug})
+
 
 class KategoriyaBoyicha(ListView):
     template_name = 'pages/yangiliklar.html'
     paginate_by = 3
     context_object_name = 'news'
+
     def get_queryset(self):
         # latest_news = News.objects.order_by("-vaqt")[0:3]
         return News.objects.filter(category_id=self.kwargs.get('pk')).select_related('category')
+
 
 class YangilikAlmashtirish(LoginRequiredMixin, UpdateView):
     model = News
@@ -70,6 +75,7 @@ class YangilikTozalash(LoginRequiredMixin, DeleteView):
     template_name = 'pages/tozalash.html'
     success_url = '/bosh-sahifa/news/'
     raise_exception = True
+
 
 class YangilikYaratish(LoginRequiredMixin, CreateView):
     template_name = 'pages/qoshish.html'

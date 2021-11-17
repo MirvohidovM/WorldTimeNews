@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail, BadHeaderError
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from rest_framework import viewsets, permissions
 from bosh_sahifa.forms import SignUpForm,  ContactusForm, CommentForm
 from bosh_sahifa.models import News, Category
@@ -57,14 +57,16 @@ def sign_up(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(
+                username=form.cleaned_data.get('username'),
+                password=form.cleaned_data.get('password1')
+            )
             login(request, user)
             return redirect('home')
     else:
         form = SignUpForm()
     return render(request, 'pages/signUp.html', {'form': form})
+
 
 def contactus(request):
     if request.method == 'POST':

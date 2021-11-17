@@ -8,5 +8,5 @@ register = template.Library()
 
 @register.simple_tag()
 def tags():
-    return Category.objects.all().annotate(sana=Count(News))
+    return Category.objects.annotate(sana=Count('categories')).all()
     #News.objects.all().select_related('categoty').annotate(sana=Count('category__news'))
