@@ -1,3 +1,6 @@
+.idea/
+venv_worldtimenews/
+mydatabase
 django_cache/
 bosh_sahifa/__pycache__/
 bosh_sahifa/migrations/
